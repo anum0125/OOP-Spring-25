@@ -1,1 +1,211 @@
-# include
+# include <iostream>
+# include <string>
+# include <cstring>
+
+using namespace std;
+
+struct Product
+{
+    int productID;
+    string name;
+    int quantity;
+    float price;
+};
+
+void add(Product* product_details, int size, int *current_size);
+void remove(Product* product_details, int *current_size, int size);
+void update(Product* product_details, int current_size);
+void inventoryValue(Product* product_details, int size, int current_size);
+
+int main()
+{
+    int size;
+    cout << "Enter the size of the stack to store data: " << endl;
+    cin >> size;  
+    Product* product_details = new Product[size];
+    int* current_size = new int;
+    *(current_size) = 0;
+    for (int i = 0; i < size; i++)
+    {
+        product_details[i].productID = 0;
+        product_details[i].name = " ";
+        product_details[i].quantity = 0;
+        product_details[i].price = 0.00;
+    }
+
+    int end = 0;
+    while (end == 0)
+    {
+        cout << "MENU" << endl;
+        cout << "1: Add a Product" << endl;
+        cout << "2: Remove a Product" << endl;
+        cout << "3: Update a Product" << endl;
+        cout << "4: Display the total value of the inventory." << endl;
+        cout << "5: Exit" << endl;
+
+        int option;
+        cout << "Enter any option from the menu." << endl;
+        cin >> option;
+        switch (option)
+        {
+        case 1:
+            add(product_details, size, current_size);
+            break;
+        
+        case 2:
+            remove(product_details, current_size, size);
+            break;
+
+        case 3:
+            update(product_details, *current_size);
+            break;
+
+        case 4:
+            inventoryValue(product_details, size, *current_size);
+
+        case 5:
+            cout << "Program Exited";
+            end = 1;
+            break;
+
+        default:
+            cout << "Invalid Input";
+        }
+    }
+
+    delete[] product_details;
+    
+}
+
+void add(Product* product_details, int size, int *current_size)
+{
+    int found = 0, i = 0;
+
+    while (found == 0 && i < size)
+    {
+        if (product_details[i].productID == 0)
+        {
+            found = 1;
+        }
+        else
+        {
+            i++;
+        }
+    }
+    if (found == 1)
+    {
+        cout << "Enter Product ID: " << endl;
+        cin >> product_details[i].productID;
+        cin.ignore();
+        cout << "Enter the name of the product: " << endl;
+        getline(cin, product_details[i].name);
+        cout << "Enter the quantity of the product available: " <<endl;
+        cin >> product_details[i].quantity;
+        cout << "Enter the price of the product: " << endl;
+        cin >> product_details[i].price;
+        *(current_size)++;
+    }
+    else
+    {
+        cout << "The stack is full. Cannot enter new products." << endl;
+    }
+}
+
+void remove(Product* product_details, int *current_size, int size)
+{
+    if ( *(current_size) == 0)
+    {
+        cout << "The stack is empty. Cannot remove any product." << endl;
+    }
+    else
+    {
+        int id;
+        cout << "Enter the id of the product you want to delete: " << endl;
+        cin >> id;
+        int found = 0, i = 0;
+        while (found == 0 && i < size)
+        {
+            if (id == product_details[i].productID)
+            {
+                found = 1;
+                product_details[i].name = " ";
+                product_details[i].productID = 0;
+                product_details[i].price = 0.00;
+                product_details[i].quantity = 0;
+                *(current_size)--;
+                i++;
+            }
+        }
+
+        if (found == 0)
+        {
+            cout << "The product ID was not found";
+        }
+        else
+        {
+            cout << "The product is added." << endl;
+        }
+    }
+}
+
+void update(Product* product_details, int current_size)
+{
+    if (current_size == 0)
+    {
+        cout << "The stack is empty. Cannot update any product." << endl;
+    }
+    else
+    {
+        int id;
+        cout << "Enter the id of the product you want to update: " << endl;
+        cin >> id;
+        int found = 0, i = 0;
+        while (found == 0)
+        {
+            if (id == product_details[i].productID)
+            {
+                found = 1;
+                cout << "Enter new Product ID: " << endl;
+                cin >> product_details[i].productID;
+                cout << "Enter the name of the product: " << endl;
+                cin >> product_details[i].name;
+                cout << "Enter the quantity of the product available: " <<endl;
+                cin >> product_details[i].quantity;
+                cout << "Enter the price of the product: " << endl;
+                cin >> product_details[i].price;
+            }
+        }
+
+        if (found == 0)
+        {
+            cout << "The product ID was not found";
+        }
+        else
+        {
+            cout << "The product was updated." << endl;
+        }
+    }
+}
+
+void inventoryValue(Product* product_details, int size, int current_size)
+{
+    float value = 0;
+    if (current_size > 0)
+    {
+        for (int i = 0; i < size; i++)
+        {
+            if (product_details[i].productID != 0)
+            {
+                value += (product_details[i].price) * (product_details[i].quantity);
+            }
+        }
+        cout << "The total value of the inventory is: " << value << endl;
+    }
+    else
+    {
+        cout << "No product available." << endl;
+    }
+    
+}
+
+
