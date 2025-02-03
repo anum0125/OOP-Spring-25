@@ -89,10 +89,10 @@ void printDetails(Employee* employee_details, int employees)
     for (int i = 0; i < employees; i++)
     {
         cout << "EMPLOYEE " << i+1;
-        cout << "Employee ID: " << employee_details[i].employeeID;
-        cout << "Employee's Name: " << employee_details[i].name;
-        cout << "Employee's Department: " << employee_details[i].department;
-        cout << "Employee's Salary: " << employee_details[i].salary;
+        cout << "Employee ID: " << employee_details[i].employeeID << endl;
+        cout << "Employee's Name: " << employee_details[i].name << endl;
+        cout << "Employee's Department: " << employee_details[i].department << endl;
+        cout << "Employee's Salary: " << employee_details[i].salary << endl;
         cout << "\n";
     }
 }
