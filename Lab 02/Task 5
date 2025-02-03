@@ -1,0 +1,79 @@
+# include <iostream>
+# include <string>
+# include <cstring>
+using namespace std;
+
+int main()
+{
+    char* str1 = new char[100];
+    char *str2 = new char[100];
+
+    cout << "Enter the first string: " << endl;
+    cin.getline(str1, 100);
+
+    cout << "Enter the second string: " << endl;
+    cin.getline(str2, 100);
+
+    // lengths
+    int length1 = 0;
+    int length2 = 0;
+    int i = 0;
+    while (str1[i] != '\0')
+    {
+        length1++;
+        i++;
+    }
+    i = 0;
+    while (str2[i] != '\0')
+    {
+        length2++;
+        i++;
+    }
+    cout << "The length of the first string is: " << length1 <<endl;
+    cout << "The length of the second string is : " << length2 << endl;
+
+    //concatenating
+
+    char *concatenate = new char[length1 + length2 + 1];
+    int counter = 0;
+    for (int i = 0; i < length1; i++)
+    {
+        concatenate[counter] = str1[i];
+        counter++;
+    }
+    for (int i = 0; i < length2; i++)
+    {
+        concatenate[counter] = str2[i];
+        counter++;
+    }
+    concatenate[counter] = '\0';
+
+    cout << "Concatenated String: " << concatenate << endl;
+
+    //comparision
+
+    if (length1 == length2)
+    {
+        int j = 0;
+        int notequal = 0;
+        while (notequal == 0 && j < length1)
+        {
+            if (str1[j] != str2[j])
+            {
+                notequal = 1;
+                cout << "The strings are not equal." << endl;
+            }
+            j++;
+        }
+        if (notequal == 0)
+        {
+            cout << "The strings are equal." << endl;
+        }
+    }
+
+    
+
+    delete[] str1;
+    delete[] str2;
+    delete[] concatenate;
+}
