@@ -1,0 +1,64 @@
+# include <iostream>
+# include <string>
+# include <cstring>
+
+using namespace std;
+
+struct Student
+{
+    int rollNumber;
+    string name;
+    int marks;
+};
+
+void input(Student* student_details, int num);
+void highestMarks(Student* student_detail, int num);
+
+int main()
+{
+    int num;
+     cout << "Enter the number of students you want to input details of: " << endl;
+     cin >> num;
+
+     Student* student_details = new Student[num];
+     input(student_details, num);
+     highestMarks(student_details, num);
+
+     delete[] student_details;
+
+}
+
+void input(Student* student_details, int num)
+{
+    cout << "\nEnter the details of students: \n" << endl;
+    for (int i = 0; i < num; i++)
+    {
+        cout << "\nSTUDENT " << i+1 << endl;
+        cout << "Enter the roll number of the student: " << endl;
+        cin >> student_details[i].rollNumber;
+        cin.ignore();
+        cout << "Enter the name of the student: " << endl;
+        getline(cin, student_details[i].name);
+        cout << "Enter the marks of the student: " <<endl;
+        cin >> student_details[i].marks;
+    }
+}
+
+void highestMarks(Student* student_detail, int num)
+{
+    int max = student_detail[0].marks;
+    int counter = 0;
+    for (int i = 1; i < num; i++)
+    {
+        if (student_detail[i].marks > max)
+        {
+            max = student_detail[i].marks;
+            counter = i;
+        }
+    }
+
+    cout << "\nStudent with highest marks: " << endl;
+    cout << "Roll Number: " << student_detail[counter].rollNumber << endl;
+    cout << "Name: " << student_detail[counter].name << endl;
+    cout << "Marks: " << student_detail[counter].marks << endl;
+}
