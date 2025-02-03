@@ -1,0 +1,75 @@
+# include <iostream>
+# include <string>
+# include <cstring>
+using namespace std;
+
+void swap(int* num1, int* num2);
+void reverseArray(int *arr, int size);
+void printArray(int arr[], int size);
+
+int main()
+{ 
+    int* num1 = new int;
+    int* num2 = new int;
+    cout << "Swapping of two numbers.\n" << endl;
+    swap(num1, num2);
+
+    int size;
+    cout << "\nEnter the size of the array: " << endl;
+    cin >> size;
+    int* arr = new int[size];
+    for (int i = 0; i < size; i++)
+    {
+        cout << "Enter element " << i+1 << ":" << endl;
+        cin >> arr[i];
+    }
+    cout << "Array before reversal: " << endl;
+    printArray(arr, size);
+    reverseArray(arr, size);
+    cout << "\nArray after reversal: " << endl;
+    printArray(arr, size); 
+
+    delete[] num1, num2, arr;
+
+}
+
+void swap(int* num1, int* num2)
+{
+    
+    cout << "Enter the first number: " << endl;
+    cin >> *(num1);
+    cout << "Enter the second number: " << endl;
+    cin >> *(num2);
+    *num1 = *num1 ^ *num2;
+    *num2 = *num1 ^ *num2;
+    *num1 = *num1 ^ *num2;
+
+    cout << "Number 1 after swapping is: " << *(num1) << endl;
+    cout << "Number 2 after swapping is: " << *(num2) << endl;
+    
+    delete num1;
+    delete num2;
+}
+
+void reverseArray(int *arr, int size)
+{
+    int *start = arr;
+    int *end = arr + size - 1;
+
+    while (start < end)
+    {
+        *start= *start ^ *end;
+        *end = *start ^ *end;
+        *start = *start ^ *end;
+        start++;
+        end--;
+    }
+}
+
+void printArray(int arr[], int size)
+{
+    for (int i = 0; i < size; i++)
+    {
+        cout << "Element " << i+1 << ": " << arr[i] << endl;
+    }
+}
