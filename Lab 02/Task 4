@@ -1,1 +1,106 @@
+# include <iostream>
+# include <string>
+using namespace std;
 
+struct student
+{
+    string name;
+    int roll_no;
+    float marks[5];
+};
+
+struct results
+{
+    char grades[5];
+    float avg;
+};
+
+void inputDetails(student* studentArray, int records);
+void Calculate(results* studentResults, student* studentArray, int records);
+void displayResults(results* studentResults, student* studentArray, int records);
+
+int main()
+{
+    int studentRecords;
+    cout << "Enter the number of students you want to enter details of: ";
+    cin >> studentRecords;
+
+    student* studentDetails = new student[studentRecords];
+    results* studentResults = new results[studentRecords];
+
+    inputDetails(studentDetails, studentRecords);
+    Calculate(studentResults, studentDetails, studentRecords);
+    displayResults(studentResults, studentDetails, studentRecords);
+
+    delete[] studentDetails;
+    delete[] studentResults;
+
+    return 0;
+}
+
+void inputDetails(student* studentArray, int records)
+{
+    for (int i = 0; i < records; i++)
+    {
+        cout << "STUDENT " << i+1 << endl;
+        cout << "Enter the student's roll number: " << endl;
+        cin >> studentArray[i].roll_no;
+
+        cin.ignore();
+        cout << "Enter student's name: " << endl;
+        getline(cin, studentArray[i].name);
+
+        for (int j = 0; j < 5; j++)
+        {
+            cout << "Enter marks of subject " << j+1 << endl;
+            cin >> studentArray[i].marks[j];
+        }
+
+    }
+}
+
+void Calculate(results* studentResults, student* studentArray, int records)
+{
+    
+    for (int i = 0; i < records; i++)
+    {
+        float sum = 0;
+        float marks;
+        for (int j = 0; j < 5; j++)
+        {
+            marks = studentArray[i].marks[j];
+            sum += marks;
+            if (marks > 80)
+            {
+                studentResults[i].grades[j] = 'A';
+            }
+            else if (marks > 70)
+            {
+                studentResults[i].grades[j] = 'B';
+            }
+            else if (marks > 60)
+            {
+                studentResults[i].grades[j] = 'C';
+            }
+            else
+            {
+                studentResults[i].grades[j] = 'U';
+            }
+        }
+        studentResults[i].avg = sum/5;
+    }
+}
+
+void displayResults(results* studentResults, student* studentArray, int records)
+{
+    for (int i = 0; i < records; i++)
+    {
+        cout << "Result of " << studentArray[i].name << endl;
+        cout << "Average marks: " << studentResults[i].avg << endl;
+        for (int j = 0; j < 5; j++)
+        {
+            cout << "Subject " << j+1 << ": " << studentResults[i].grades[j] << endl;
+        }
+        cout << "\n";
+    }
+}
