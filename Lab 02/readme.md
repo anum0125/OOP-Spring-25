@@ -30,7 +30,6 @@ Task # 8
 ![image](https://github.com/user-attachments/assets/3db405fa-667f-4cf8-ba01-152c14860c17)
 ![image](https://github.com/user-attachments/assets/3eb20fe8-5c86-4df6-aa40-5fb872eae8eb)
 
-
 Task # 9
 ![image](https://github.com/user-attachments/assets/84759b4a-f5ab-4c5e-b608-b368f772e8a7)
 
@@ -38,5 +37,3 @@ Task # 10
 ![image](https://github.com/user-attachments/assets/2321acb6-6147-43ce-97eb-bbd36c3a9e15)
 ![image](https://github.com/user-attachments/assets/54ff87a9-df46-47a9-8d45-6783d2e11555)
 
-
-Task # 7
