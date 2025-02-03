@@ -1,1 +1,220 @@
-# include 
+# include <iostream>
+# include <string>
+# include <cstring>
+
+using namespace std;
+
+struct Book
+{
+    int bookID;
+    string title;
+    string author;
+    int isAvailable;
+};
+
+void add(Book* book_details, int size, int *current_size);
+void remove(Book* book_details, int *current_size, int size);
+void search(Book* book_details, int current_size);
+void isAvailable(Book* book_details, int size, int current_size);
+
+int main()
+{
+    int size;
+    cout << "Enter the size of the stack to store data: " << endl;
+    cin >> size;  
+    Book* book_details = new Book[size];
+    int* current_size = new int;
+    *(current_size) = 0;
+    for (int i = 0; i < size; i++)
+    {
+        book_details[i].bookID = 0;
+        book_details[i].author = " ";
+        book_details[i].title = " ";
+        book_details[i].isAvailable = 0;
+    }
+
+    int end = 0;
+    while (end == 0)
+    {
+        cout << "MENU" << endl;
+        cout << "1: Add a Book" << endl;
+        cout << "2: Remove a Book" << endl;
+        cout << "3: Search a Book" << endl;
+        cout << "4: Display the Books which are available." << endl;
+        cout << "5: Exit" << endl;
+
+        int option;
+        cout << "Enter any option from the menu." << endl;
+        cin >> option;
+        switch (option)
+        {
+        case 1:
+            add(book_details, size, current_size);
+            break;
+        
+        case 2:
+            remove(book_details, current_size, size);
+            break;
+
+        case 3:
+            search(book_details, *current_size);
+            break;
+
+        case 4:
+            isAvailable(book_details, size, *current_size);
+            break;
+
+        case 5:
+            cout << "Program Exited";
+            end = 1;
+            break;
+
+        default:
+            cout << "Invalid Input";
+        }
+    }
+
+    delete[] book_details, current_size;
+    
+}
+
+void add(Book* book_details, int size, int *current_size)
+{
+    int found = 0, i = 0;
+
+    while (found == 0 && i < size)
+    {
+        if (book_details[i].bookID == 0)
+        {
+            found = 1;
+        }
+        else
+        {
+            i++;
+        }
+    }
+    if (found == 1)
+    {
+        cout << "Enter Book ID: " << endl;
+        cin >> book_details[i].bookID;
+        cin.ignore();
+        cout << "Enter the title of the book: " << endl;
+        getline(cin, book_details[i].title);
+        cout << "Enter the author of the book: " <<endl;
+        getline(cin, book_details[i].author);
+        cout << "Enter if it's available in stock or not.\n0: Not Available\n1: Available  " << endl;
+        cin >> book_details[i].isAvailable;
+        *(current_size)++;
+        cout << "Book Added." << endl;
+    }
+    else
+    {
+        cout << "The stack is full. Cannot add new books." << endl;
+    }
+}
+
+void remove(Book* book_details, int *current_size, int size)
+{
+    if ( *(current_size) == 0)
+    {
+        cout << "The stack is empty. Cannot remove any books." << endl;
+    }
+    else
+    {
+        int id;
+        cout << "Enter the id of the book you want to delete: " << endl;
+        cin >> id;
+        int found = 0, i = 0;
+        while (found == 0 && i < size)
+        {
+            if (id == book_details[i].bookID)
+            {
+                found = 1;
+                book_details[i].bookID = 0;
+                book_details[i].author = " ";
+                book_details[i].title = " ";
+                book_details[i].isAvailable = 0;
+                *(current_size)--;
+                i++;
+            }
+        }
+
+        if (found == 0)
+        {
+            cout << "The Book ID was not found";
+        }
+        else
+        {
+            cout << "The Book is added." << endl;
+        }
+    }
+}
+
+void search(Book* book_details, int current_size)
+{
+    if (current_size == 0)
+    {
+        cout << "The stack is empty. Cannot search for any product." << endl;
+    }
+    else
+    {
+        int id;
+        cout << "Enter the id of the book you want to search: " << endl;
+        cin >> id;
+        int found = 0, i = 0;
+        while (found == 0)
+        {
+            if (id == book_details[i].bookID)
+            {
+                found = 1;
+                cout << "Book ID: " << book_details[i].bookID << endl;
+                cout << "Title of the Book: " << book_details[i].title << endl;
+                cout << "Author of the Book: " << book_details[i].author << endl;
+                if (book_details[i].isAvailable == 1)
+                {
+                    cout << "The Book is available." << endl;
+                }
+                else
+                {
+                    cout << "The Book is not available." << endl;
+                }
+
+            }
+        }
+
+        if (found == 0)
+        {
+            cout << "The Book ID was not found";
+        }
+    }
+}
+
+void isAvailable(Book* book_details, int size, int current_size)
+{
+    int n = 0;
+    if (current_size > 0)
+    {
+        cout << "Available Books: \n" << endl;
+        for (int i = 0; i < size; i++)
+        {
+            if (book_details[i].isAvailable == 1)
+            {
+                n++;
+                cout << "Book ID: " << book_details[i].bookID << endl;
+                cout << "Title of the Book: " << book_details[i].title << endl;
+                cout << "Author of the Book: " << book_details[i].author << endl;
+                cout << "\n";
+            }
+        }
+        if (n == 0)
+        {
+            cout << "No books are available." << endl;
+        }
+    }
+    else
+    {
+        cout << "No books are available." << endl;
+    }
+    
+}
+
