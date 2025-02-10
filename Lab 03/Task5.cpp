@@ -114,7 +114,7 @@ class GroceryStore
              {
                 if (inventoryStock[i] > 0)
                 {
-                    cout << "\nkItem Number: " << i << endl;
+                    cout << "\nItem Number: " << i << endl;
                     cout << "Item name: " << items[i] << endl;
                     cout << "Price " << prices[i] << endl;
                 }
@@ -143,6 +143,7 @@ class GroceryStore
                     total += quantity * prices[item_num];
                     inventoryStock[item_num] -= quantity; 
                 }
+                i++;
 
                 
              }
