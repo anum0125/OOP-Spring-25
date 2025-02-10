@@ -58,6 +58,10 @@ class Book
             cout << "You have purchased the book: " << endl;
             lowStockWarning();
         }
+        else
+        {
+            cout << q << "units of books are not available." << endl;
+        }
     }
          
 
