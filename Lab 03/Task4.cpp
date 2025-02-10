@@ -11,6 +11,14 @@ class Laptop
     int RAM;
     int storage;
     int on_off;
+    string programs[5][2] = 
+    {
+        {"Calculator", "0"},
+        {"Calender", "0"},
+        {"Clash of Clans", "0"},
+        {"Fitness App", "0"},
+        {"Whatsapp", "0"}
+    };
 
     public:
 
@@ -22,9 +30,9 @@ class Laptop
             getline(cin, model);
             cout << "Enter the processor of the laptop: " << endl;
             getline(cin, processor);
-            cout << "Enter the RAM of the laptop: " << endl;
+            cout << "Enter the RAM of the laptop (in GB): " << endl;
             cin >> RAM;
-            cout << "Enter the storage capacity of the laptop: " << endl;
+            cout << "Enter the storage capacity of the laptop (in GB): " << endl;
             cin >> storage;
 
             cin.ignore();
@@ -61,21 +69,14 @@ class Laptop
             cout << "The brand of the laptop: " << brand << endl;
             cout << "The model of the laptop: " << model << endl;
             cout << "The processor of the laptop: " << processor << endl;
-            cout << "The RAM of the laptop: "<< RAM << endl;
-            cout << "The storage capacity of the laptop: " << storage << endl;
+            cout << "The RAM of the laptop (in GB): "<< RAM << endl;
+            cout << "The storage capacity of the laptop (in GB): " << storage << endl;
             cout << "--------------------------------------------------" << endl;
         }
 
         void runProgram()
         {
-            string programs[5][2] = 
-            {
-                {"Calculator", "0"},
-                {"Calender", "0"},
-                {"Clash of Clans", "0"},
-                {"Fitness App", "0"},
-                {"Whatsapp", "0"}
-            };
+            
         
             cout << "Menu: " << endl;
             for (int i = 0; i < 5; i++) 
@@ -92,17 +93,16 @@ class Laptop
                 cout << "You can only enter a number between 1-5 (included). Try Again." << endl;
                 cin >> choice;
             }
-            int found = 0;
 
-            programs[choice-1][1] = '0';
+            programs[choice-1][1] = "1";
 
             cout << "\nCurrently running programs: " << endl;
-            cout << "\n" << programs[choice-1][0] << "is actively running." << endl;
+            cout << "\n" << programs[choice-1][0] << " is actively running." << endl;
             for(int i = 0; i < 5; i++)
             {
                 if (programs[i][1] == "1" && i != choice-1)
                 {
-                    cout << programs[i][0] << "is running in background." << endl;
+                    cout << programs[i][0] << " is running in background." << endl;
                 }
             }
 
@@ -116,7 +116,9 @@ class Laptop
 
 int main()
 {
+    cout << "Bilal's Laptop: " << endl;
     Laptop Bilal;
+    cout << "Ayesha's Laptop: " << endl;
     Laptop Ayesha;
     
     int end = 0;
@@ -125,9 +127,9 @@ int main()
         int person;
         cout <<  "Whose Laptop is being operated? 1 or 2 " << endl;
         cout << "1: Ayesha" << endl;
-        cout << "Bilal" << endl;
+        cout << "2: Bilal" << endl;
         cin >> person;
-
+        int option;
         switch (person)
         {
             case 1:
@@ -138,14 +140,16 @@ int main()
                 cout << "4: Compare the specifications" << endl;
                 cout << "5: Exit" << endl;
     
-                int option;
                 cout << "Enter your choice: " << endl;
                 cin >> option;
         
                 switch (option)
                 {
                 case 1:
-                    Ayesha.getOn_Off();
+                    cout << "0: Turn Off, 1: Turn On" << endl;
+                    int t;
+                    cin >> t;
+                    Ayesha.setOn_Off(t);
                     break;
         
                 case 2:
@@ -157,7 +161,9 @@ int main()
                     break;
         
                 case 4:
+                    cout << "\nAyesha's Laptop Specifications: " << endl;
                     Ayesha.display();
+                    cout << "\nBilal's Laptop Specifications: " << endl;
                     Bilal.display();
                     break;
         
@@ -180,14 +186,16 @@ int main()
                 cout << "4: Compare the specifications" << endl;
                 cout << "5: Exit" << endl;
         
-                int option;
                 cout << "Enter your choice: " << endl;
                 cin >> option;
         
                 switch (option)
                 {
                 case 1:
-                    Bilal.getOn_Off();
+                    cout << "0: Turn Off, 1: Turn On" << endl;
+                    int t;
+                    cin >> t;
+                    Bilal.setOn_Off(t);
                     break;
         
                 case 2:
@@ -197,9 +205,11 @@ int main()
                 case 3: 
                     Bilal.runProgram();
                     break;
-        
+         
                 case 4:
+                    cout << "\nBilal's Laptop Specifications: " << endl;
                     Bilal.display();
+                    cout << "\nAyesha's Laptop Specifications: " << endl;
                     Ayesha.display();
                     break;
         
@@ -215,7 +225,7 @@ int main()
                 break;
 
             default:
-                cout << "Invalid Input. You can only enter 1 or 1" << endl;
+                cout << "Invalid Input. You can only enter 0 or 1" << endl;
 
         
 
