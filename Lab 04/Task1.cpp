@@ -37,7 +37,6 @@ class Book
     {
         
         cout << "Enter the updated title of the book: " << endl;
-        cin.ignore();
         getline(cin, title);
         cout << "Enter the updated price of the book: " << endl;
         cin >> price;
@@ -53,6 +52,7 @@ class Book
         cout << "Enter the quantity of the book you want to buy: " << endl;
         int q;
         cin >> q;
+         cin.ignore();
         if (*stock >= q)
         {
             *stock -= q;
