@@ -1,3 +1,4 @@
+
 # include <iostream>
 # include <string>
 # include <cstring>
@@ -11,18 +12,18 @@ class Book
     int *stock = new int;
 
     public:
-
+ 
     Book()
     {
-        for (int i = 0; i < 50; i++)
-        {
-            title = "Unknown";
-            price = 0.0;
-            *stock = 30;
-        }
-        
+        title = "Unknown";
+        price = 0.0;
+        *stock = 30;
     }
 
+    void deleteStock()
+    {
+        delete[] stock;
+    }
 
     void lowStockWarning()
     {
@@ -78,5 +79,6 @@ int main()
     b2.updateBookDetails();
     b2.Purchase();
 
-
+    b1.deleteStock();
+    b2.deleteStock();
 }
