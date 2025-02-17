@@ -76,9 +76,6 @@ int main()
     b1.updateBookDetails();
     b1.Purchase();
 
-    b2.updateBookDetails();
-    b2.Purchase();
 
     b1.deleteStock();
-    b2.deleteStock();
 }
