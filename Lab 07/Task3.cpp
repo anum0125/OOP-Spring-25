@@ -14,7 +14,12 @@ class Currency
             : amount(amt), currencyCode(code), currencySymbol(symbol), exchangeRate(rate) {}
 
         virtual double convertToBase() = 0;
-        virtual double convertTo(double targetRate) = 0;
+        void convertTo(double targetRate)
+        {
+            double temp = convertToBase();
+            cout << "Converted to Target Currency!" << endl;
+            cout <<  "Targeted Currency: " << temp / targetRate << endl;
+        }
         virtual void displayCurrency() = 0;
 
         virtual ~Currency() {}
@@ -23,16 +28,13 @@ class Currency
 class Dollar : public Currency 
 {
     public:
-        Dollar(double amt) : Currency(amt, "USD", "$", 1.0) {}
+        Dollar(double amt, double rate) : Currency(amt, "USD", "$", rate) {}
 
         double convertToBase() override 
         {
+            cout << "Dollar converted to Base Currency!" << endl;
+            cout << "Base Currency: " << amount * exchangeRate << endl;
             return amount * exchangeRate;
-        }
-
-        double convertTo(double targetRate) override 
-        {
-            return convertToBase() / targetRate;
         }
 
         void displayCurrency() override 
@@ -44,16 +46,13 @@ class Dollar : public Currency
 class Euro : public Currency 
 {
     public:
-        Euro(double amt) : Currency(amt, "EUR", "€", 1.1) {}
+        Euro(double amt, double rate) : Currency(amt, "EUR", "€", rate) {}
 
         double convertToBase() override 
         {
+            cout << "Euro converted to Base Currency!" << endl;
+            cout << "Base Currency: " << amount * exchangeRate << endl;
             return amount * exchangeRate;
-        }
-
-        double convertTo(double targetRate) override 
-        {
-            return convertToBase() / targetRate;
         }
 
         void displayCurrency() override 
@@ -65,16 +64,13 @@ class Euro : public Currency
 class Rupee : public Currency 
 {
     public:
-        Rupee(double amt) : Currency(amt, "INR", "₹", 0.012) {}
+        Rupee(double amt, double rate) : Currency(amt, "INR", "₹", rate) {}
 
         double convertToBase() override 
         {
+            cout << "Rupee converted to Base Currency!" << endl;
+            cout << "Base Currency: " << amount * exchangeRate << endl;
             return amount * exchangeRate;
-        }
-
-        double convertTo(double targetRate) override 
-        {
-            return convertToBase() / targetRate;
         }
 
         void displayCurrency() override 
@@ -87,9 +83,9 @@ int main()
 {
     Currency* currencies[] = 
     {
-        new Dollar(100),
-        new Euro(85),
-        new Rupee(7500)
+        new Dollar(100, 20),
+        new Euro(85, 25),
+        new Rupee(7500, 10)
     };
 
     int size = sizeof(currencies) / sizeof(currencies[0]);
@@ -97,8 +93,7 @@ int main()
     for (int i = 0; i < size; i++) 
     {
         currencies[i]->displayCurrency();
-        cout << "Converted to base: " << currencies[i]->convertToBase() << endl;
-        cout << "Converted to USD: " << currencies[i]->convertTo(1.0) << endl;
+        currencies[i]->convertTo(1.5);
         cout << "----------------------" << endl;
         delete currencies[i];
     }
