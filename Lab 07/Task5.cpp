@@ -6,12 +6,17 @@ class Media
     protected:
         string title, publicationDate, uniqueID, publisher;
     public:
-        Media(string t, string pd, string id, string pub)
-            : title(t), publicationDate(pd), uniqueID(id), publisher(pub) {}
+        Media(string t, string pd, string id, string pub) : title(t), publicationDate(pd), uniqueID(id), publisher(pub) {}
 
         virtual void displayInfo() = 0;
-        virtual void checkOut() { cout << title << " has been checked out." << endl; }
-        virtual void returnItem() { cout << title << " has been returned." << endl; }
+        virtual void checkOut() 
+        { 
+            cout << title << " has been checked out." << endl; 
+        }
+        virtual void returnItem() 
+        { 
+            cout << title << " has been returned." << endl; 
+        }
         virtual ~Media() {}
 };
 
@@ -21,11 +26,11 @@ class Book : public Media
         string author, ISBN;
         int numberOfPages;
     public:
-        Book(string t, string pd, string id, string pub, string a, string isbn, int pages)
-            : Media(t, pd, id, pub), author(a), ISBN(isbn), numberOfPages(pages) {}
+        Book(string t, string pd, string id, string pub, string a, string isbn, int pages) : Media(t, pd, id, pub), author(a), ISBN(isbn), numberOfPages(pages) {}
 
         void displayInfo() override 
         {
+            cout << "\n";
             cout << "Book: " << title << " | Author: " << author << " | ISBN: " << ISBN << " | Pages: " << numberOfPages << endl;
         }
 };
@@ -37,11 +42,11 @@ class DVD : public Media
         double duration;
         double rating;
     public:
-        DVD(string t, string pd, string id, string pub, string d, double dur, double r)
-            : Media(t, pd, id, pub), director(d), duration(dur), rating(r) {}
+        DVD(string t, string pd, string id, string pub, string d, double dur, double r) : Media(t, pd, id, pub), director(d), duration(dur), rating(r) {}
 
         void displayInfo() override 
         {
+            cout << "\n";
             cout << "DVD: " << title << " | Director: " << director << " | Duration: " << duration << " hrs | Rating: " << rating << endl;
         }
 };
@@ -57,28 +62,32 @@ class CD : public Media
 
         void displayInfo() override 
         {
+            cout << "\n";
             cout << "CD: " << title << " | Artist: " << artist << " | Tracks: " << numberOfTracks << " | Genre: " << genre << endl;
         }
 };
 
 void searchMedia(string title) 
 {
+    cout << "\n";
     cout << "Searching for media with title: " << title << endl;
 }
 
-void searchMedia(string author, bool isBook) 
+void searchMedia(string author, bool bookAvailable) 
 {
+    cout << "\n";
     cout << "Searching for books by author: " << author << endl;
 }
 
 void searchMedia(int year) 
 {
+    cout << "\n";
     cout << "Searching for media published in year: " << year << endl;
 }
 
 int main() 
 {
-    Book book1("C++ Programming", "2020", "B101", "Tech Press", "John Doe", "123-456789", 350);
+    Book book1("Harry Potter", "1995", "B101", "Tech Press", "JK-Rowling", "123-456789", 350);
     DVD dvd1("Inception", "2010", "D202", "Warner Bros", "Christopher Nolan", 2.5, 9.0);
     CD cd1("Thriller", "1982", "C303", "Epic Records", "Michael Jackson", 9, "Pop");
 
@@ -86,6 +95,7 @@ int main()
     dvd1.displayInfo();
     cd1.displayInfo();
 
+    cout << "\n";
     book1.checkOut();
     book1.returnItem();
     
