@@ -8,7 +8,7 @@ class Shape
         string color;
         int borderThickness;
     public:
-        Shape(string c = "black", int b = 1) : color(c), borderThickness(b) {}
+        Shape(string c, int b) : color(c), borderThickness(b) {}
         
         virtual void draw() = 0;  
         virtual double calculateArea() = 0;
@@ -23,7 +23,7 @@ class Circle : public Shape
     private:
         double radius;
     public:
-        Circle(double r, string c = "black", int b = 1) : Shape(c, b), radius(r) {}
+        Circle(double r, string c, int b) : Shape(c, b), radius(r) {}
 
         void draw() override 
         {
@@ -47,7 +47,7 @@ class Rectangle : public Shape
     private:
         double width, height;
     public:
-        Rectangle(double w, double h, string c = "black", int b = 1) : Shape(c, b), width(w), height(h) {}
+        Rectangle(double w, double h, string c, int b) : Shape(c, b), width(w), height(h) {}
 
         void draw() override 
         {
@@ -71,7 +71,7 @@ class Triangle : public Shape
     private:
         double a, b, c;  
     public:
-        Triangle(double s1, double s2, double s3, string c = "black", int b = 1) : Shape(c, b), a(s1), b(s2), c(s3) {}
+        Triangle(double s1, double s2, double s3, string c, int b) : Shape(c, b), a(s1), b(s2), c(s3) {}
 
         void draw() override 
         {
@@ -81,7 +81,7 @@ class Triangle : public Shape
         double calculateArea() override 
         {
             double s = (a + b + c) / 2;
-            return sqrt(s * (s - a) * (s - b) * (s - c));  // Heron's formula
+            return sqrt(s * (s - a) * (s - b) * (s - c)); 
         }
 
         double calculatePerimeter()  override 
@@ -93,9 +93,9 @@ class Triangle : public Shape
 int main() {
     Shape* shapes[] = 
     {
-        new Circle(5, "red"),
-        new Rectangle(4, 6, "blue"),
-        new Triangle(3, 4, 5, "green")
+        new Circle(5, "red", 1),
+        new Rectangle(4, 6, "blue", 2),
+        new Triangle(3, 4, 5, "green", 1)
     };
 
     int size = sizeof(shapes) / sizeof(shapes[0]);  
