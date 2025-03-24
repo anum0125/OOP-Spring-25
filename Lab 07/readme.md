@@ -3,7 +3,7 @@
 ![image](https://github.com/user-attachments/assets/268641a5-e49a-462b-a8bc-8d7f5fca0631)
 
 # Task 2
-![image](https://github.com/user-attachments/assets/f32aa2c9-5f35-4a2b-b7e0-500f35218e66)
+![image](https://github.com/user-attachments/assets/1bbfd42c-d407-4bdd-9e70-398917b9ac94)
 
 # Task 3
 ![image](https://github.com/user-attachments/assets/f4c0bbb2-d352-4d64-9ce0-460916bafcab)
