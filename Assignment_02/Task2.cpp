@@ -34,7 +34,7 @@ class Ghost
 
         friend ostream& operator<<(ostream& out, const Ghost& g);
 
-        int getScareLevel()
+        int getScareLevel() 
         {
             return scareLevel;
         }
@@ -96,13 +96,13 @@ class ShadowPoltergeist: public Poltergeists, public ShadowGhosts
 class HauntedHouse
 {
     string name;
-    Ghost **arrayOfGhosts; //composition, array of ghost pointers
+    Ghost **arrayOfGhosts; //array of ghost pointers
     int numberOfGhosts; //must have atleast 3 ghosts
 
     public:
+
         HauntedHouse(string n, int g): name(n), numberOfGhosts(g)
         {
-            arrayOfGhosts = new Ghost*[numberOfGhosts];
 
             cout << "Enter details for " << numberOfGhosts << " ghosts:\n";
 
@@ -200,15 +200,15 @@ void Visit(Visitor v[], int numVisitors, HauntedHouse& h)
             cout << "Ghost's " << j+1 << " Scare Level: " << h.arrayOfGhosts[j]->getScareLevel() << endl;
             if (h.arrayOfGhosts[j]->getScareLevel() <= v[i].bravery) 
             {
-                cout << v[i].name << " laughs and taunts the ghost!\n";
+                cout << v[i].name << " laughs and taunts the ghost!" << endl;
             }
-            else if(h.arrayOfGhosts[j]->getScareLevel() > v[i].bravery)
+            else if(h.arrayOfGhosts[j]->getScareLevel() > v[i].bravery+2)
             {
-                cout << v[i].name << " screams and runs away!\n";
+                cout << v[i].name << " gets a shaky voice..." << endl;
             }
             else  
             {
-                cout << v[i].name << " gets a shaky voice...\n";
+                cout << v[i].name << " screams and runs away!" << endl;
             }
                     
         }
@@ -217,22 +217,53 @@ void Visit(Visitor v[], int numVisitors, HauntedHouse& h)
 
 int main()
 {
+    cout << "\nHaunted House 1: \n";
     HauntedHouse h1("ShadowMoor Asylum", 3);
-    Visitor visitorsArray[3];
+    Visitor visitorsArray1[3];
     
     Visitor v1("Alexander", 7);
     Visitor v2("Ella", 9);
     Visitor v3("Anna", 2);
 
-    visitorsArray[0] = v1;
-    visitorsArray[1] = v2;
-    visitorsArray[2] = v3;
+    visitorsArray1[0] = v1;
+    visitorsArray1[1] = v2;
+    visitorsArray1[2] = v3;
 
     h1.showDetails();
 
-    Visit(visitorsArray, 3, h1);
+    Visit(visitorsArray1, 3, h1);
 
+    cout << "\nHaunted House 2: \n";
 
+    HauntedHouse h2("Abracadabra", 3);
+    Visitor visitorsArray2[3];
     
+    Visitor v4("Ali", 7);
+    Visitor v5("Ayesha", 9);
+    Visitor v6("Ahmed", 2);
 
+    visitorsArray2[0] = v4;
+    visitorsArray2[1] = v5;
+    visitorsArray2[2] = v6;
+
+    h2.showDetails();
+
+    Visit(visitorsArray2, 3, h2);
+
+    cout << "\nHaunted House 3: \n";
+
+    HauntedHouse h3("Avada Kedavra", 3);
+    Visitor visitorsArray3[3];
+    
+    Visitor v7("Kenan", 7);
+    Visitor v8("Leyla", 9);
+    Visitor v9("Selin", 2);
+
+    visitorsArray3[0] = v7;
+    visitorsArray3[1] = v8;
+    visitorsArray3[2] = v9;
+
+    h3.showDetails();
+
+    Visit(visitorsArray3, 3, h3);
 }
