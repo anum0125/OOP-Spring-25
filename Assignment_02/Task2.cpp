@@ -1,4 +1,5 @@
 # include <iostream>
+# include <string>
 using namespace std;
 
 
@@ -103,11 +104,13 @@ class HauntedHouse
 
         HauntedHouse(string n, int g): name(n), numberOfGhosts(g)
         {
+            arrayOfGhosts = new Ghost *[numberOfGhosts];
 
             cout << "Enter details for " << numberOfGhosts << " ghosts:\n";
 
             for (int i = 0; i < numberOfGhosts-1; i++)
             {
+                string input;
                 int choice;
                 string worker;
                 int scare;
@@ -116,13 +119,13 @@ class HauntedHouse
                 cout << "1. Poltergeist\n2. Banshee\n3. ShadowGhost\n4. ShadowPoltergeist\n";
                 cout << "Enter choice: ";
                 cin >> choice;
-
                 cin.ignore();
+
                 cout << "Enter name for ghost " << i + 1 << ": ";
                 getline(cin, worker);
 
                 cout << "Enter scare level for ghost " << i + 1 << ": ";
-                cin >> scare;
+                cin>>scare;
 
                 switch (choice)
                 {
@@ -198,11 +201,11 @@ void Visit(Visitor v[], int numVisitors, HauntedHouse& h)
         {
             h.arrayOfGhosts[j]->PerformHaunting();
             cout << "Ghost's " << j+1 << " Scare Level: " << h.arrayOfGhosts[j]->getScareLevel() << endl;
-            if (h.arrayOfGhosts[j]->getScareLevel() <= v[i].bravery) 
+            if (h.arrayOfGhosts[j]->getScareLevel() < v[i].bravery) 
             {
                 cout << v[i].name << " laughs and taunts the ghost!" << endl;
             }
-            else if(h.arrayOfGhosts[j]->getScareLevel() > v[i].bravery+2)
+            else if(h.arrayOfGhosts[j]->getScareLevel() <= v[i].bravery+2)
             {
                 cout << v[i].name << " gets a shaky voice..." << endl;
             }
