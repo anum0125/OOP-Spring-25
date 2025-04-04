@@ -103,7 +103,7 @@ class RamzanDrone: public Vehicle
 
         void command(string cmd, int packageID) override
         {
-            cout <<"Vehicle " << vehicleID << " executing " << cmd << " for package " << packageID << "using Drone Mode!" << endl;
+            cout <<"Vehicle " << vehicleID << " executing " << cmd << " for package " << packageID << " using Drone Mode!" << endl;
         }
 
         void command(string cmd, int packageID, string urgency) override 
@@ -130,7 +130,7 @@ class RamzanTimeShip: public Vehicle
 
         void command(string cmd, int packageID) override
         {
-            cout << "Vehicle " << vehicleID << " executing " << cmd << " for package " << packageID << "using Time-Travel Mode!" << endl;
+            cout << "Vehicle " << vehicleID << " executing " << cmd << " for package " << packageID << " using Time-Travel Mode!" << endl;
         }
 
         void command(string cmd, int packageID, string urgency) override
@@ -156,7 +156,7 @@ class RamzanHyperPod: public Vehicle
 
         void command(string cmd, int packageID) override
         {
-            cout << "Vehicle "<< vehicleID << " executing " << cmd << " for package " << packageID << "Underground Transport Mode!" << endl;
+            cout << "Vehicle "<< vehicleID << " executing " << cmd << " for package " << packageID << " Underground Transport Mode!" << endl;
         }
 
         void command(string cmd, int packageID, string urgency) override
@@ -190,4 +190,6 @@ int main()
         vehiclesArray[i]->optimalDeliveryRoute();
         vehiclesArray[i]->command("Deliver", i+200);
     }
+
+    AIConflictResolution(d1, t1);
 }
