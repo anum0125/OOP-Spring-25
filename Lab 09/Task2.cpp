@@ -42,7 +42,7 @@ class LightBulb: public SmartDevice
             }
             else
             {
-                isOn = true;
+                isOn = false;
                 cout << "The light bulb has been turned off!" << endl;
             }
             
@@ -85,7 +85,7 @@ class Thermostat: public SmartDevice
             }
             else
             {
-                isOn = true;
+                isOn = false;
                 cout << "The Thermostat has been turned off!" << endl;
             }
             
